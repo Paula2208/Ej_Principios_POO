@@ -20,3 +20,9 @@ class Product:
         self._discount_strategy = discount_strategy
     def get_final_price(self) -> float:
         return self._discount_strategy.apply_discount(self.price)
+product = Product(100, NoDiscount())
+print(f"Price without discount: ${product.get_final_price()}")
+product.set_discount_strategy(StudentDiscount())
+print(f"Price with student discount: ${product.get_final_price()}")
+product.set_discount_strategy(SeasonalDiscount())
+print(f"Price with seasonal discount: ${product.get_final_price()}")

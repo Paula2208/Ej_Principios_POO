@@ -77,15 +77,15 @@ class Product:
 
 
 # Ejemplo de uso:
-if __name__ == "__main__":
-    # Create a product with a base price of $100 and no discount
-    product = Product(100, NoDiscount())
-    print(f"Price without discount: ${product.get_final_price()}")
 
-    # Set a student discount strategy and get the price
-    product.set_discount_strategy(StudentDiscount())
-    print(f"Price with student discount: ${product.get_final_price()}")
+# Create a product with a base price of $100 and no discount
+product = Product(100, NoDiscount())
+print(f"Price without discount: ${product.get_final_price()}")
 
-    # Set a seasonal discount strategy and get the price
-    product.set_discount_strategy(SeasonalDiscount())
-    print(f"Price with seasonal discount: ${product.get_final_price()}")
+# Set a student discount strategy and get the price
+product.set_discount_strategy(StudentDiscount())
+print(f"Price with student discount: ${product.get_final_price()}")
+
+# Set a seasonal discount strategy and get the price
+product.set_discount_strategy(SeasonalDiscount())
+print(f"Price with seasonal discount: ${product.get_final_price()}")

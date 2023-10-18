@@ -22,7 +22,7 @@ Ejemplos para inversión de dependencia.
 
 ## Patrones de Diseño
 
-Ejemplos de los patrones de comportamiento Strategy y Memento. 
+Ejemplos de los patrones de comportamiento Strategy y Memento, además contiene comentarios claros sobre cómo se relaciona con los principios básicos y sólidos más relevantes en ellos. 
 
 __Strategy__
 ```bash
