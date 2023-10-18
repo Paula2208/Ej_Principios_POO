@@ -1,17 +1,42 @@
-# Principios Básicos de POO
+# Principios de Programación
 
-Ejemplos de herencia, encapsulamiento, polimorfismo y abstracción. Usando black para formatear dentro del directorio CleanCode/.
+__(^◡^)/__ ¡Hola!
 
-## Uso
+Una ejemplificación rápida de los principios básicos de POO, algunos principios sólidos y patrones de diseño. Usando black para formatear dentro del directorio CleanCode/.
+
+## Principios Básicos de POO
+
+Ejemplos de herencia, encapsulamiento, polimorfismo y abstracción. 
 
 ```bash
-/bin/python3 /<ruta del repositorio>/Ej_Principios_POO/CleanCode/main.py
+> CleanCode/main.py
 ```
 
-(^◡^)/ Déjate llevar por las preguntas y explicaciones que aparecen en consola.
+## Principios SOLID
 
-## Creador
+Ejemplos para inversión de dependencia. 
 
-Paula Daniela Guzmán Zabala
+```bash
+> CleanCode/SOLID/player.py
+```
+
+## Patrones de Diseño
+
+Ejemplos de los patrones de comportamiento Strategy y Memento. 
+
+__Strategy__
+```bash
+> CleanCode/Design/strategy.py
+```
+
+__Memento__
+```bash
+> CleanCode/Design/memento.py
+```
+
+### Creador
+
+Paula Daniela Guzmán Zabala (ɔ◔‿◔)ɔ ♥
+
 Ingeniería de Software II - 2023-2s
 Universidad Nacional de Colombia

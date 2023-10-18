@@ -1,96 +1,91 @@
 from abc import ABC, abstractmethod
 
 
-class DiscountStrategy(ABC):
-    """
-    Abstract class representing a discount strategy.
-    Provides an interface to apply a discount to a given amount.
-    """
+"""
+    Abstracción: Se define una estructura común (interfaz) para
+        las estrategias de descuento.
+    Segregación de Interfaz: Se define una interfaz específica 
+        y enfocada para aplicar descuentos.
+"""
 
+
+class DiscountStrategy(ABC):
+    # Polimorfismo: A través de este método abstracto, diferentes
+    #   estrategias podrán tener diferentes implementaciones.
     @abstractmethod
     def apply_discount(self, amount: float) -> float:
-        """
-        Apply a discount to the provided amount.
-
-        :param amount: Original amount before applying discount.
-        :return: Amount after applying discount.
-        """
         pass
 
 
+"""
+    Herencia: StudentDiscount hereda de DiscountStrategy y define 
+        una estrategia concreta.
+    Sustitución de Liskov: Esta clase concreta puede ser sustituida
+        por su clase padre (DiscountStrategy) sin afectar
+        el comportamiento.
+"""
+
+
 class StudentDiscount(DiscountStrategy):
-    """
-    Concrete strategy that applies a student discount.
-    """
-
     def apply_discount(self, amount: float) -> float:
-        """
-        Apply a 10% student discount to the provided amount.
-
-        :param amount: Original amount before applying discount.
-        :return: Amount after applying 10% discount.
-        """
+        """Apply student discount"""
         return amount * 0.90
 
 
+# Herencia: Otra clase que hereda de DiscountStrategy.
 class SeasonalDiscount(DiscountStrategy):
-    """
-    Concrete strategy that applies a seasonal discount.
-    """
-
     def apply_discount(self, amount: float) -> float:
-        """
-        Apply a 20% seasonal discount to the provided amount.
-
-        :param amount: Original amount before applying discount.
-        :return: Amount after applying 20% discount.
-        """
+        """Apply seasonal discount"""
         return amount * 0.80
 
 
+# Herencia: Otra clase que hereda de DiscountStrategy.
 class NoDiscount(DiscountStrategy):
-    """
-    Concrete strategy that applies no discount.
-    """
+    """Not apply any discount"""
 
     def apply_discount(self, amount: float) -> float:
-        """
-        Return the original amount without applying any discount.
-
-        :param amount: Original amount.
-        :return: Original amount without any discount.
-        """
         return amount
 
 
+"""
+    Modularidad: El comportamiento de descuento se ha separado en 
+        diferentes clases (estrategias), y esta clase Product solo 
+        se preocupa por los detalles del producto y cómo aplicar 
+        un descuento.
+"""
+
+
 class Product:
-    """
-    Represents a product with a price and a discount strategy.
-    Provides methods to set the discount strategy and get the final price after applying discount.
-    """
-
+    # Inversión de Dependencias: En lugar de depender de estrategias
+    #   de descuento concretas, Product depende de la abstracción
+    #   (DiscountStrategy).
     def __init__(self, price: float, discount_strategy: DiscountStrategy):
-        """
-        Initialize the Product with a price and a discount strategy.
-
-        :param price: Base price of the product.
-        :param discount_strategy: Initial discount strategy for the product.
-        """
         self.price = price
         self._discount_strategy = discount_strategy
 
+    # Responsabilidad Única: Un método que solo se encarga de
+    #   establecer la estrategia de descuento.
     def set_discount_strategy(self, discount_strategy: DiscountStrategy):
-        """
-        Set a new discount strategy for the product.
-
-        :param discount_strategy: New discount strategy to be set.
-        """
         self._discount_strategy = discount_strategy
 
+    # Responsabilidad Única: Un método que solo se encarga de obtener
+    #   el precio final después del descuento.
+    # Abierto-Cerrado: Podemos cambiar la estrategia de descuento en
+    #   tiempo de ejecución sin modificar la clase Product.
     def get_final_price(self) -> float:
-        """
-        Get the final price of the product after applying the discount strategy.
-
-        :return: Price after discount.
-        """
         return self._discount_strategy.apply_discount(self.price)
+
+
+# Ejemplo de uso:
+if __name__ == "__main__":
+    # Create a product with a base price of $100 and no discount
+    product = Product(100, NoDiscount())
+    print(f"Price without discount: ${product.get_final_price()}")
+
+    # Set a student discount strategy and get the price
+    product.set_discount_strategy(StudentDiscount())
+    print(f"Price with student discount: ${product.get_final_price()}")
+
+    # Set a seasonal discount strategy and get the price
+    product.set_discount_strategy(SeasonalDiscount())
+    print(f"Price with seasonal discount: ${product.get_final_price()}")
